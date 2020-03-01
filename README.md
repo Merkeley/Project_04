@@ -1,7 +1,7 @@
-# Media Topic Tracking
-# Using Natural Language Processing
-# and
-# Machine Learning#
+## Media Topic Tracking
+## Using Natural Language Processing
+## and
+## Machine Learning#
 
 The project explores the use of NLP for identifying and tracking print media 
 reporting topics related to the 2020 Presidental Primaries.

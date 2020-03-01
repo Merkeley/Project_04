@@ -49,7 +49,6 @@ The repository is arranged as follows:<br>
             in the project corpus.
 
     src - Contains the source files for the Python scripts used in this project
-``` Python
         news_scrape.py - Contains two functions used to build the corpus.
             run_web_search - receives the handle to a search client,
                 two lists of search terms and a cursor for a MongoDB collection.
@@ -60,5 +59,4 @@ The repository is arranged as follows:<br>
                 article's web site, parse it and then returns the article text.
                 If the site scraping fails an empty string is returned.  Because
                 each news site uses a different format for their web sites I used
-```
                 a dictionary to guide parsing process to the correct tags.

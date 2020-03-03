@@ -1,7 +1,7 @@
-## Media Topic Tracking
-## Using Natural Language Processing
-## and
-## Machine Learning#
+<h2 align=center>Media Topic Tracking</h2>
+<h2 align=center>Using Natural Language Processing</h2>
+<h2 align=center>and</h2>
+<h2 align=center>Machine Learning</h2>
 
 This project explores the use of NLP for identifying and tracking pricipal subjects in 
 print media reporting related to the 2020 Presidental Primaries.
@@ -32,31 +32,15 @@ exploration.
 
 The repository is arranged as follows:<br>
 <br>
-    Notebooks - All jupyter notebooks for process testing and visualizations.
-        Text_Prep - The contents of this notebook are used to clean the text of 
-            the articles after they are scraped from the web.
-        Topic_Model - The code in this notebookd compares the results of 
-            several differenty topic modeling techniques and creates visualizations 
-            for the best process.  
-        Topic_ModelTime - The code in this notebook is used to explore the changes 
-            in reporting topics over time.
-        PCA_Clustering - Here we explore using Principal Component Analysis combined with
-            KMeans clustering for topic modeling.
-        Sentiment_full_corpus - processes all articles in the corpus and assigns
-            a sentiment score to the reporting.
-        LocationSearch - This notebook uses Google's location search api to 
-            identify the geographic locations of the publishers of the articles
-            in the project corpus.
-
-    src - Contains the source files for the Python scripts used in this project
-        news_scrape.py - Contains two functions used to build the corpus.
-            run_web_search - receives the handle to a search client,
-                two lists of search terms and a cursor for a MongoDB collection.
-                The function runs the search and stores the search results in 
-                the MongoDB collection.
-            scrape_news - receives a dictionary containing the information about
-                an article.  The function uses this information to read the 
-                article's web site, parse it and then returns the article text.
-                If the site scraping fails an empty string is returned.  Because
-                each news site uses a different format for their web sites I used
-                a dictionary to guide parsing process to the correct tags.
+**./Notebooks** - All jupyter notebooks for process testing and visualizations.
+**Text_Prep** - The contents of this notebook are used to clean the text of the articles after they are scraped from the web.<br>
+**Topic_Model** - The code in this notebookd compares the results of several differenty topic modeling techniques and creates visualizations  for the best process.<br>  
+**Topic_ModelTime** - The code in this notebook is used to explore the changes  in reporting topics over time.<br>
+**PCA_Clustering** - Here we explore using Principal Component Analysis combined with KMeans clustering for topic modeling.<br>
+**Sentiment** - processes all articles in the corpus and assigns a sentiment score to the reporting.<br>
+**LocationSearch** - This notebook uses Google's location search api to identify the geographic locations of the publishers of the articles in the project corpus.<br>
+<br>
+**./src** - Contains the source files for the Python scripts used in this project<br>
+**news_scrape.py** - Contains two functions used to build the corpus.<br>
+**run_web_search** - receives the handle to a search client, two lists of search terms and a cursor for a MongoDB collection. The function runs the search and stores the search results in the MongoDB collection.<br>
+**scrape_news** - receives a dictionary containing the information about an article.  The function uses this information to read the article's web site, parse it and then returns the article text. If the site scraping fails an empty string is returned.  Because each news site uses a different format for their web sites I used a dictionary to guide parsing process to the correct tags.

@@ -2,23 +2,43 @@
     File: news_scrape.py
 
     Description:
-        Tools for scraping news articles from the web.
+        This script is part of a NLP project for analyzing news articles on the web.
+        The functions in this file can be used to connect to an Azure news search API
+        to collect the URLs of news articles.  There is a function to also scrape the 
+        text of a news related page given the url.
+
+        The data is stored in a MongoDB database.
+
+        Each news site has a slightly different format for their page layout.  Most
+        pages stored the article text in paragraph tags on their pages.  Some pages 
+        use special tag/class names within other tag blocks.  A dictionary contains
+        a list of special tag combinations for a few of the news sites that were
+        explored in detail.  It is assumed that not all sites will be scrapable.
+
+    Date Create: 2-15-20
+    Date Modified: 2-20-20
+
+    Update Log:
+
+    Notes:
 
 '''
+# Import the models we will need.
 import sys
 import re
 import os.path
 import requests
 import time
 import pandas as pd
+import json
+from os import path
 
+# Beautiful Soup and requests are used for web page parsing
 from bs4 import BeautifulSoup as soup
 import urllib
 from urllib.request import urlopen
-import json
 
-from os import path
-
+# Import MongoDB tools for database work
 from pymongo import MongoClient
 import requests
 
@@ -27,10 +47,6 @@ from azure.cognitiveservices.search.websearch import WebSearchClient
 from azure.cognitiveservices.search.websearch.models import SafeSearch
 from msrest.authentication import CognitiveServicesCredentials
 from azure.cognitiveservices.search.newssearch import NewsSearchClient
-
-from pymongo import MongoClient
-import requests
-
 
 # News site definitions
 div_search = { \
@@ -73,6 +89,17 @@ div_search = { \
 }
 
 def scrape_news(article) :
+    '''
+        Function: scrape_news
+            Given the url of a news page, attempt to scrape the text of the article.
+            This function uses the div_search dictionary defined above to identify
+            and special tag sequences used to store article text on specific sites.
+
+        Arguments:
+            article - MongoDB document (dictionary) what has the location information
+                for the online article that we want to scrape.
+
+    '''
     # Put the text in a list when we find it
     page_text = ''
 
@@ -98,11 +125,13 @@ def scrape_news(article) :
         # Parse the response in Beautiful Soup
         article_soup = soup(response.text, 'html5lib')
 
+        # check the dictionary for special html tags for the article text
         if paper_dict['head_tag'][1] != '' :
             head_search_attrs = { paper_dict['head_tag'][1] : paper_dict['head_tag'][2]}
         else :
             head_search_attrs = {}
 
+        # check the dictionary for special html tags for the article text
         if paper_dict['text_tag'][1] != '' :
             text_search_attrs = { paper_dict['text_tag'][1] : paper_dict['text_tag'][2] }
         else :
@@ -128,18 +157,30 @@ def scrape_news(article) :
                 soup_list = head_tag.find_all(paper_dict['text_tag'][0])
 
         elif (no_head_tag == True) or (head_tag == None):
+            # If there is not outer grouping tag then just look for text tag
             if text_search_attrs :
                 soup_list = article_soup.find_all(paper_dict['text_tag'][0], \
                     attrs=text_search_attrs)
             else :
                 soup_list = article_soup.find_all(paper_dict['text_tag'][0])
 
+        # For each block/paragraph in the document append the text
         for paragraph in soup_list :
             page_text += paragraph.text
 
+    # return all the text that we found
     return page_text 
 
 def run_web_search(client, candidates, other_search, mdb) :
+    '''
+        Function: run_web_search
+            Use the news search API to find links to articles of interest
+
+        Arguments:
+            article - MongoDB document (dictionary) what has the location information
+                for the online article that we want to scrape.
+
+    '''
     # Run through each of the candidates and search for news on them
     for candidate in candidates :
         for term in other_search :

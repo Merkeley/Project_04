@@ -32,7 +32,7 @@ exploration.
 
 The repository is arranged as follows:<br>
 <br>
-- **./Notebooks** - All jupyter notebooks for process testing and visualizations.<br>
+- **[./Notebooks](Notebooks)** - All jupyter notebooks for process testing and visualizations.<br>
      **Text_Prep** - The contents of this notebook are used to clean the text of the articles after they are scraped from the web.<br>
      **Topic_Model** - The code in this notebook compares the results of several different topic modeling techniques and creates visualizations for the best process.<br>  
      **Topic_ModelTime** - The code in this notebook is used to explore the changes in reporting topics over time.<br>

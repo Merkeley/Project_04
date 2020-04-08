@@ -33,7 +33,7 @@ exploration.
 The repository is arranged as follows:<br>
 <br>
 **./Notebooks** - All jupyter notebooks for process testing and visualizations.<br>
-  **Text_Prep** - The contents of this notebook are used to clean the text of the articles after they are scraped from the web.<br>
+  -**Text_Prep** - The contents of this notebook are used to clean the text of the articles after they are scraped from the web.<br>
   **Topic_Model** - The code in this notebookd compares the results of several differenty topic modeling techniques and creates visualizations  for the best process.<br>  
   **Topic_ModelTime** - The code in this notebook is used to explore the changes  in reporting topics over time.<br>
   **PCA_Clustering** - Here we explore using Principal Component Analysis combined with KMeans clustering for topic modeling.<br>

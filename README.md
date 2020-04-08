@@ -33,15 +33,15 @@ exploration.
 The repository is arranged as follows:<br>
 <br>
 - **[./Notebooks](Notebooks)** - All jupyter notebooks for process testing and visualizations.<br>
-     **Text_Prep** - The contents of this notebook are used to clean the text of the articles after they are scraped from the web.<br>
-     **Topic_Model** - The code in this notebook compares the results of several different topic modeling techniques and creates visualizations for the best process.<br>  
-     **Topic_ModelTime** - The code in this notebook is used to explore the changes in reporting topics over time.<br>
-     **PCA_Clustering** - Here I explore using Principal Component Analysis combined with KMeans clustering for topic modeling.<br>
-  **Sentiment** - processes all articles in the corpus and assigns a sentiment score to the reporting.<br>
-  **LocationSearch** - This notebook uses Google's location search api to identify the geographic locations of the publishers of the articles in the project corpus.<br>
+     **[Text_Prep](Notebooks/TextPrep.ipynb)** - The contents of this notebook are used to clean the text of the articles after they are scraped from the web.<br>
+     **[Topic_Model](Notebooks/Topic_Model.ipynb)** - The code in this notebook compares the results of several different topic modeling techniques and creates visualizations for the best process.<br>  
+     **[Topic_ModelTime](Notebooks/Topic_ModelTime.ipynb)** - The code in this notebook is used to explore the changes in reporting topics over time.<br>
+     **[PCA_Clustering](Notebooks/PCA_Clustering.ipynb)** - Here I explore using Principal Component Analysis combined with KMeans clustering for topic modeling.<br>
+     **[Sentiment](Notebooks/Sentiment.ipynb)** - processes all articles in the corpus and assigns a sentiment score to the reporting.<br>
+      **[LocationSearch](Notebooks/LocationSearch.ipynb)** - This notebook uses Google's location search api to identify the geographic locations of the publishers of the articles in the project corpus.<br>
 <br>
 
-- **./src** - Contains the source files for the Python scripts used in this project<br>
-     **news_scrape.py** - Contains two functions used to build the corpus.<br>
-     **run_web_search** - receives the handle to a search client, two lists of search terms and a cursor for a MongoDB collection. The function runs the search and stores the search results in the MongoDB collection.<br>
-     **scrape_news** - receives a dictionary containing the information about an article.  The function uses this information to read the article's web site, parse it and then returns the article text. If the site scraping fails an empty string is returned.  Because each news site uses a different format for their web sites I used a dictionary to guide parsing process to the correct tags.
+- **[./src](src)** - Contains the source files for the Python scripts used in this project<br>
+     **[news_scrape.py](src/news_scrape.py)** - Contains two functions used to build the corpus.<br>
+     **[run_web_search](src/run_web_search.py)** - receives the handle to a search client, two lists of search terms and a cursor for a MongoDB collection. The function runs the search and stores the search results in the MongoDB collection.<br>
+     **[scrape_news](src/scrape_news.py)** - receives a dictionary containing the information about an article.  The function uses this information to read the article's web site, parse it and then returns the article text. If the site scraping fails an empty string is returned.  Because each news site uses a different format for their web sites I used a dictionary to guide parsing process to the correct tags.
